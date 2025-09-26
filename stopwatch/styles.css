@@ -1,0 +1,76 @@
+
+body {
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+
+    background-color: #a03232; 
+    color: white;
+    overflow: hidden;
+}
+
+.stopwatch-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+
+#clearText {
+    font-size: 2.5em;
+    font-weight: 500;
+    margin-bottom: 20px;
+    cursor: pointer;
+    user-select: none;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+}
+#clearText:hover {
+    opacity: 1;
+}
+
+
+#display {
+    font-family: 'Digital-Display', monospace; 
+    font-size: 6em;
+    font-weight: 300;
+    color: white;
+    margin-bottom: 50px; 
+    padding: 0;
+    border: none;
+}
+
+
+#startStopBtn {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-color: #ffeb3b;
+    color: #424242;
+    font-size: 1.2em;
+    font-weight: 600;
+    text-transform: lowercase;
+
+
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4);
+    transition: transform 0.1s, box-shadow 0.1s;
+}
+
+#startStopBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+
+@font-face {
+    font-family: 'Digital-Display';
+    src: local('Digital-Display'), url('https://fonts.cdnfonts.com/s/40280/digital-7.woff') format('woff');
+}
