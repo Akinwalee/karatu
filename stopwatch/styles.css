@@ -1,4 +1,32 @@
+:root {
+    /* Light Mode Variables */
+    --bg-color: #f0f4f8;
+    --main-color: #ffffff;
+    --text-color: #333;
+    --display-color: #1a237e;
+    --shadow-light: rgba(0, 0, 0, 0.1);
+    --start-color: #4CAF50;
+    --stop-color: #F44336;
+    --reset-color: #9E9E9E;
+    --lap-color: #2196F3;
+    --toggle-color: #ffc107;
+}
 
+/* Dark Mode Configuraton */
+body.dark-mode {
+    --bg-color: #121212;
+    --main-color: #1f1f1f;
+    --text-color: #e0e0e0;
+    --display-color: #90caf9;
+    --shadow-light: rgba(255, 255, 255, 0.1);
+    --start-color: #66bb6a;
+    --stop-color: #ef5350;
+    --reset-color: #757575;
+    --lap-color: #64b5f6;
+    --toggle-color: #fff9c4;
+}
+
+/* Centering the stopwatch on the page using flexbox */
 body {
     font-family: 'Inter', sans-serif;
     display: flex;
@@ -7,69 +35,123 @@ body {
     justify-content: center;
     min-height: 100vh;
     margin: 0;
-
-    background-color: #a03232; 
-    color: white;
-    overflow: hidden;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
 }
 
 .stopwatch-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    background-color: var(--main-color);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 20px var(--shadow-light);
     text-align: center;
+    width: 90%;
+    max-width: 450px;
+    transition: background-color 0.3s, box-shadow 0.3s;
 }
 
-
-#clearText {
-    font-size: 2.5em;
-    font-weight: 500;
-    margin-bottom: 20px;
-    cursor: pointer;
-    user-select: none;
-    opacity: 0.8;
-    transition: opacity 0.2s;
-}
-#clearText:hover {
-    opacity: 1;
-}
-
-
+/* Digital Clock Display Styling */
 #display {
-    font-family: 'Digital-Display', monospace; 
-    font-size: 6em;
-    font-weight: 300;
-    color: white;
-    margin-bottom: 50px; 
-    padding: 0;
-    border: none;
+    font-family: 'Digital-Display', monospace; /* Custom font for digital look */
+    font-size: 3.5em;
+    font-weight: bold;
+    color: var(--display-color);
+    margin-bottom: 30px;
+    padding: 10px 0;
+    border-bottom: 2px solid var(--shadow-light);
 }
 
+/* Controls Layout */
+.controls {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-bottom: 30px;
+    flex-wrap: wrap; /* Responsive wrapping for buttons */
+}
 
-#startStopBtn {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    background-color: #ffeb3b;
-    color: #424242;
-    font-size: 1.2em;
-    font-weight: 600;
-    text-transform: lowercase;
-
-
+/* Button Styling with Hover Effects */
+.btn {
+    padding: 12px 20px;
     border: none;
+    border-radius: 8px;
     cursor: pointer;
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4);
-    transition: transform 0.1s, box-shadow 0.1s;
+    font-size: 1em;
+    font-weight: 600;
+    color: white;
+    transition: transform 0.1s, box-shadow 0.1s, opacity 0.3s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    flex-grow: 1;
+    min-width: 100px;
 }
 
-#startStopBtn:hover {
+.btn:hover:not(:disabled) {
     transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
 }
 
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
 
+#startBtn { background-color: var(--start-color); }
+#stopBtn { background-color: var(--stop-color); }
+#resetBtn { background-color: var(--reset-color); }
+#lapBtn { background-color: var(--lap-color); }
+
+/* Lap Times Styling */
+.laps-container {
+    margin-top: 20px;
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid var(--shadow-light);
+    border-radius: 8px;
+    padding: 10px;
+    background-color: var(--bg-color);
+    transition: background-color 0.3s;
+}
+
+#laps {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+}
+
+#laps li {
+    padding: 8px 10px;
+    border-bottom: 1px dashed var(--shadow-light);
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.95em;
+}
+
+#laps li:last-child {
+    border-bottom: none;
+}
+
+/* Theme Tggle Button */
+#themeToggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 8px 15px;
+    background-color: var(--toggle-color);
+    color: var(--text-color);
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px var(--shadow-light);
+}
+
+#themeToggle:hover {
+    opacity: 0.9;
+}
+
+/* Custom Font for Digital Look (With a Fallback to Monospace) */
 @font-face {
     font-family: 'Digital-Display';
     src: local('Digital-Display'), url('https://fonts.cdnfonts.com/s/40280/digital-7.woff') format('woff');

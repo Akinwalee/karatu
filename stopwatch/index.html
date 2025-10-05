@@ -6,15 +6,28 @@
     <title>Stopwatch App</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
-<body>
+<body class="light-mode">
+    <button id="themeToggle" onclick="toggleTheme()">☀️ Dark Mode</button>
+
     <div class="stopwatch-container">
-        <div id="clearText" onclick="resetTimer()">CLEAR</div>
+        <!-- Time Display Area -->
+        <div id="display">00:00:00:00</div>
 
-        <div id="display">00:00:00</div>
+        <!-- Controls -->
+        <div class="controls">
+            <button id="startBtn" class="btn" onclick="startTimer()">Start</button>
+            <button id="stopBtn" class="btn" onclick="stopTimer()" disabled>Stop</button>
+            <button id="resetBtn" class="btn" onclick="resetTimer()">Reset</button>
+            <button id="lapBtn" class="btn" onclick="recordLap()" disabled>Lap</button>
+        </div>
 
-        <button id="startStopBtn" onclick="toggleTimer()">
-            start/stop
-        </button>
+        <!-- Lap Times Display -->
+        <div class="laps-container">
+            <h3>Laps</h3>
+            <ul id="laps">
+                <!-- Lap times will be inserted here -->
+            </ul>
+        </div>
     </div>
 
     <script src="script.js"></script>
